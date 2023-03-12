@@ -1,0 +1,8 @@
+version: '3'
+services:
+  api:
+    container_name: backend
+    build: .
+    command: bundle exec rails s
+    ports:
+      - 3000:3000
