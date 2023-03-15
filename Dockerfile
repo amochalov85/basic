@@ -36,3 +36,5 @@ RUN SECRET_KEY_BASE=1 bundle exec rails assets:precompile
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
 #CMD ["./bin/rails", "server"]
+
+#CMD "bundle exec rake db:migrate"
