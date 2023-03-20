@@ -1,10 +1,10 @@
 # Make sure it matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.0.2
+ARG RUBY_VERSION=3.2.1
 FROM ruby:$RUBY_VERSION
  
 # Install libvips for Active Storage preview support
 RUN apt-get update -qq && \
-    apt-get install -y build-essential libvips && \
+    apt-get install -y build-essential libvips netcat && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man
  
@@ -16,6 +16,8 @@ ENV RAILS_LOG_TO_STDOUT="1" \
     RAILS_SERVE_STATIC_FILES="true" \
     RAILS_ENV="production" \
     BUNDLE_WITHOUT="development"
+
+RUN gem update
  
 # Install application gems
 COPY Gemfile Gemfile.lock ./
@@ -23,6 +25,7 @@ RUN bundle install
  
 # Copy application code
 COPY . .
+RUN chmod +x wait-for-command.sh
  
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile --gemfile app/ lib/
