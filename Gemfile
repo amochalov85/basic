@@ -70,3 +70,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+#gem 'railties', '~> 5.0', '>= 7.0.4.3'
