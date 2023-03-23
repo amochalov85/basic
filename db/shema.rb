@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_01) do
       end
   
     create_table :users do |t|
+        t.string :name, null: false
         t.string :email, null: false
         t.string :encrypted_password, null: false
         t.timestamps
