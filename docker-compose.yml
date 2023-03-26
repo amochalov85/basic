@@ -18,6 +18,18 @@ services:
     depends_on:
       postgres:
         condition: service_started
+
+  jumpbox:
+    container_name: jumpbox
+    build:
+      dockerfile: Dockerfile.jumpbox
+    command: "sleep infinity"
+    environment:
+        SECRET_KEY_BASE: 1
+        RAILS_ENV: production
+    volumes:
+        - ./:/app
+
   postgres:
     image: postgres:13.4
     restart: always
