@@ -1,41 +1,29 @@
-version: '3'
 services:
-  api:
-    container_name: backend
+  web:
     build: .
-    command: sh -c "
-      cd /rails &&
-      ./wait-for-command.sh --time 30 --command 'nc -z postgres 5432' &&
-      bundle exec rails db:create &&
-      bundle exec rails db:migrate &&
-      bundle exec rails server
-      "
-    environment:
-      SECRET_KEY_BASE: 1
-      RAILS_ENV: production
     ports:
       - 3000:3000
-    depends_on:
-      postgres:
-        condition: service_started
-
-  jumpbox:
-    container_name: jumpbox
-    build:
-      dockerfile: Dockerfile.jumpbox
-    command: "sleep infinity"
-    environment:
-        SECRET_KEY_BASE: 1
-        RAILS_ENV: production
     volumes:
-        - ./:/app
+      - .:/usr/src/app
+    environment:
+      DB_HOST: postgres
+      DB_NAME: postgres
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+    depends_on:
+      - postgres
 
   postgres:
-    image: postgres:13.4
-    restart: always
+    image: postgres:14
     volumes:
-      - ./.volumes/postgresql/data:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data:cached
     environment:
+      POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: basic_production
+    ports:
+      - 5436:5432
+
+volumes:
+  postgres:
+  
