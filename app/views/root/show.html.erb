@@ -1,0 +1,6 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.content %></p>
+<p><%= @post.created_at.strftime("%B %d, %Y") %></p>
+<h2>Author</h2>
+<p><%= @post.user.name %></p>
+<%= link_to "Back to all posts", posts_path %>

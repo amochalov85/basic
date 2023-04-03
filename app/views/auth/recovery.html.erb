@@ -1,0 +1,10 @@
+<h1>Password Recovery</h1>
+<%= form_with url: recovery_path, method: :post do |f| %>
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+  <div>
+    <%= f.submit "Recover password" %>
+  </div>
+<% end %>
