@@ -11,5 +11,8 @@ rails db:migrate
 
 
 For SQL  
-docker exec -it 141c11c5c0e0 /bin/bash  
+docker exec -it id_postgres /bin/bash  
 psql -U postgres -d postgres  
+\dt; - all tables
+drop table name_table;
+select * from name_tables;

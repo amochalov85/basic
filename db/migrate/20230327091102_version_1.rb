@@ -1,19 +1,19 @@
-class Version1 < ActiveRecord::Migration[7.0]
+  class Version1 < ActiveRecord::Migration[7.0]
     def change
     
-      create_table 'users' do |t|
-      t.string :email, null: false
-      t.string :encrypted_password, null: false
-      t.timestamps
+      create_table "users" do |t|
+        t.string "name"
+        t.string "email"
+        t.string "password"
       end
-    
-      create_table 'posts' do |t|
-      t.text :content, null: false 
-      t.boolean :archived, default: false 
-      t.integer :likes_count, default: 0
-      t.integer :dislikes_count, default: 0
-      t.datetime :banned_at
-      t.timestamps
+      create_table "posts" do |t|
+        t.text "text"
+        t.boolean "is_banned", default: false
+        t.boolean "is_archived", default: false
+        t.string "likes", array: true
+        t.string "dislikes", array: true
       end
+  
+      add_reference :posts, :user, foreign_key: true
     end
 end

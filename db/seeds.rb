@@ -1,8 +1,14 @@
-# Создание пользователей
-user1 = User.create(email: "john@example.com", encrypted_password: "password")
-user2 = User.create(email: "sarah@example.com", encrypted_password: "password")
-user3 = User.create(email: "mike@example.com", encrypted_password: "password")
+User.delete_all
+Post.delete_all
 
-# Создание постов и связывание их с пользователями
-post1 = Post.create(content: "Пример контента поста 1", user: user1)
-post2 = Post.create(content: "Пример контента поста 2", user: user2)
+users = 3.times.map do |i|
+  User.create(
+    name: Faker::Book.author,
+    email: "user_#{i}@example.com")
+end   
+
+posts = users.map do |user|
+  Post.create(
+    text: Faker::Food.description,
+    user: user)
+end  

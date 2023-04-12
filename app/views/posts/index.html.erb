@@ -1,8 +1,14 @@
-<h1>All Posts</h1>
-<%= link_to "Create a new post", new_post_path %>
-<ul>
+
+<h1 class="text-center fs-1">Posts</h1>
+<div class="row">
   <% @posts.each do |post| %>
-    <li><%= post.title %></li>
-    <p><%= post.content %></p>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text"><%= post.text.truncate(120) %></p>
+          <%= link_to "Read more", post, class: "btn btn-success" %>
+        </div>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>
