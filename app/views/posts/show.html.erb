@@ -1,0 +1,7 @@
+<h1 class="text-center fs-1">Post</h1>
+<div class="post-text">
+  <%= @posts.text.html_safe %>
+</div>
+<div class="text-center">
+<%= link_to "View all posts", posts_path, class: 'btn btn-success' %>
+</div>

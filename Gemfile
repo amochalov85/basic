@@ -72,3 +72,4 @@ group :test do
 end
 
 #gem 'railties', '~> 5.0', '>= 7.0.4.3'
+gem 'faker'
