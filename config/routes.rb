@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   
   delete '/logout' => 'sessions#destroy'  
 
+  get "/users_cabinet", to: "users_cabinet#index"
+
 end
