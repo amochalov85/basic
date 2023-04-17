@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'login', to: 'autorization#create', as: :login
 
-  root to: 'users#new'
+  root to: 'posts#index'
 
   #get 'users/new' => 'users#new', as: :new_user
 
