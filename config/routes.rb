@@ -20,4 +20,11 @@ Rails.application.routes.draw do
 
   get "/users_cabinet", to: "users_cabinet#index"
 
+
+  resources :posts do
+    member do
+      post 'likes', to: 'posts#likes', as: 'likes'
+      post 'dislikes', to: 'posts#dislikes', as: 'dislikes'
+    end
+  end
 end
