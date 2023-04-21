@@ -1,12 +1,16 @@
- <div class="login-container">
-  <h1>Log in</h1>
-  <form action="#" method="POST">
-   <label for="exampleFormControlInput1" class="form-label">Email:</label>
-   <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required>
-   <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
-   <input type="password" class="form-control" id="inputPassword" required>
-   <button class="btn btn-success">Log in</button>
-   <button class="btn btn-danger" onclick="location.href='users/edit'">Recover password</button>
-  </form>
- </div>
+<div class="login-container">
+ <h1>Log In</h1>
+<%= form_for :login do |f| %>
+
+    <%= f.label :email, class:"form-label" %>
+    <%= f.text_field :email, autofocus: true, class:"form-control", placeholder: "name@example.com" %>
+
+    <%= f.label :password, class:"col-sm-2 col-form-label" %>
+    <%= f.password_field :password, class:"form-control" %>
+
+    <%= f.submit "Log In", class:"btn btn-success" %>
+
+  <button class="btn btn-danger" onclick="location.href='users/edit'">Recover password</button>
+<% end %>
+</div>
  

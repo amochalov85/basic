@@ -12,6 +12,7 @@ services:
       DB_PASSWORD: postgres
     depends_on:
       - postgres
+    command: /bin/bash -c "rm -f /tmp/server.pid && bin/rails server -b 0.0.0.0 -P /tmp/server.pid"
 
   postgres:
     image: postgres:14
@@ -26,4 +27,3 @@ services:
 
 volumes:
   postgres:
-  

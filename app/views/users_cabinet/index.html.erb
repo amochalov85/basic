@@ -1,0 +1,10 @@
+
+<h1>Мой кабинет</h1>
+<p>Ваши сообщения:</p>
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <h3><%= post.text.html_safe %></h3>
+    </li>
+  <% end %>
+</ul>

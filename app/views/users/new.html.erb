@@ -1,0 +1,21 @@
+<div class="login-container">
+<h1 class="text-center fs-3">Create new user</h1>
+
+<%= form_for @user do |f| %>
+
+    <%= f.label :name, class: "form-label" %>
+    <%= f.text_field :name, autofocus: true, class: "form-control", placeholder:"Name" %>
+
+    <%= f.label :email,class: "form-label" %>
+    <%= f.text_field :email, class: "form-control", placeholder:"name@example.com" %>
+
+    <%= f.label :password, class: "col-sm-2 col-form-label" %>
+    <%= f.password_field :password, class: "form-control", placeholder: "*****" %>
+
+    <%= f.label :password_confirmation, class: "col-form-label" %>
+    <%= f.password_field :password_confirmation, class: "form-control", placeholder: "*****" %>
+
+    <%= f.submit "Sign up!", class: "btn btn-success" %>
+
+<% end %>
+</div>
