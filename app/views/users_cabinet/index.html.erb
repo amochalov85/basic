@@ -1,10 +1,16 @@
 
-<h1>Мой кабинет</h1>
-<p>Ваши сообщения:</p>
+<h1>My page</h1>
+<%= link_to "New post", new_post_path, class: "btn btn-success" %>
+<%= link_to "View all posts", posts_path, class: 'btn btn-success' %>
+<p>My posts:</p>
 <ul>
   <% @posts.each do |post| %>
     <li>
       <h3><%= post.text.html_safe %></h3>
+        <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        <%= link_to "Edit", edit_post_path(post), class: "btn btn-success" %>
     </li>
   <% end %>
 </ul>
+
+
