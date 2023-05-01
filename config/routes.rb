@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   get "/users_cabinet", to: "users_cabinet#index"
 
+  delete 'posts/:id', to: 'posts#destroy', as: :delete_post
 
   resources :posts do
     member do

@@ -9,6 +9,9 @@
           <%= button_to "Like", likes_post_path(id: post.id), method: :post, class: "btn btn-danger btn-sm", style: "height: 40px" %>
           <%= button_to "Dislike", dislikes_post_path(id: post.id), class: "btn btn-primary btn-sm", style: "height: 40px" %>
           <%= link_to "Read more", post, class: "btn btn-success btn-sm", style: "height: 40px" %>
+          <% if post.user == current_user %>
+            <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", style: "height: 40px" %>
+          <% end %> 
           </div>
         </div>
       </div>
