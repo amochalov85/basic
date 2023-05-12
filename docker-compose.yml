@@ -5,6 +5,7 @@ services:
       - 3000:3000
     volumes:
       - .:/usr/src/app
+      - bundle_cache:/usr/local/bundle
     environment:
       DB_HOST: postgres
       DB_NAME: postgres
@@ -27,3 +28,4 @@ services:
 
 volumes:
   postgres:
+  bundle_cache:
