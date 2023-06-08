@@ -28,4 +28,11 @@ Rails.application.routes.draw do
       post 'dislikes', to: 'posts#dislikes', as: 'dislikes'
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :posts
+      resource :token, only: :create 
+    end
+  end
 end
