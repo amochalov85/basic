@@ -1,6 +1,7 @@
 services:
   web:
     build: .
+    image: web:latest
     ports:
       - 3000:3000
     volumes:
@@ -13,7 +14,23 @@ services:
       DB_PASSWORD: postgres
     depends_on:
       - postgres
+      - redis
+      - mailcatcher
     command: /bin/bash -c "rm -f /tmp/server.pid && bin/rails server -b 0.0.0.0 -P /tmp/server.pid"
+
+  mailcatcher:
+    restart: on-failure
+    image: dockage/mailcatcher:0.8.2
+    ports:
+    - "1080:1080"
+    - "1025:1025"
+
+  sidekiq:
+    image: web:latest
+    command: bundle exec sidekiq
+    volumes:
+     - .:/usr/src/app
+     - bundle_cache:/usr/local/bundle
 
   postgres:
     image: postgres:14
@@ -25,6 +42,11 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - 5436:5432
+
+  redis:
+    image: redis:6
+    ports:
+      - 6380:6379
 
 volumes:
   postgres:
